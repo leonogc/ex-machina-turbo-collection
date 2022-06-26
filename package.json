@@ -1,0 +1,29 @@
+{
+  "name": "ex-machina-turbo-collection",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "start": "nodemon main.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/leonogc/ex-machina-turbo-collection.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/leonogc/ex-machina-turbo-collection/issues"
+  },
+  "homepage": "https://github.com/leonogc/ex-machina-turbo-collection#readme",
+  "dependencies": {
+    "express": "^4.18.1",
+    "express-fileupload": "^1.4.0",
+    "formidable": "^2.0.1",
+    "uuid4": "^2.0.2"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.18"
+  }
+}
