@@ -13,6 +13,7 @@ module.exports = {
             if(err){
                 throw err;
             }
+            console.log("files", files);
             const rawData = fs.readFileSync(files.image.filepath);
             id = uuid4();
             imagePath = path.join(pathImages, id + ".png");
