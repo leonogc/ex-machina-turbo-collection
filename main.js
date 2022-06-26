@@ -8,6 +8,7 @@ app.use(routes);
 
 app.use(express.static('src/temp'));
 
-app.listen(8000, () => {
-    console.log("Listening on " + 8000);
+const port = process.env.PORT || 8000;
+app.listen(port, () => {
+    console.log(`Listening on ${port}`);
 });
