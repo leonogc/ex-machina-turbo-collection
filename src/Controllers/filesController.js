@@ -11,7 +11,7 @@ module.exports = {
     uploadImage : async(req, res) => {
         let image;
         var form = new formidable.IncomingForm();
-        form.parse(req,function(err,fields,files){
+        form.parse(req, async function(err,fields,files){
             console.log(fields, files)
             postData = fields;
             image = postData.image;
