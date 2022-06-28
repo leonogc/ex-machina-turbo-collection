@@ -4,8 +4,8 @@ const fs = require('fs');
 const path = require('path');
 const uuid4 = require('uuid4');
 
-const APP_URL = "http://localhost:8000/"
-//const APP_URL = "https://ex-machina-turbo.herokuapp.com"
+//const APP_URL = "http://localhost:8000/"
+const APP_URL = "https://ex-machina-turbo.herokuapp.com"
 
 const pathImages = path.join(__dirname, "../temp/images");
 const pathVideos = path.join(__dirname, "../temp/videos");
