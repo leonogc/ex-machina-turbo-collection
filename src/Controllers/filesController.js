@@ -4,6 +4,9 @@ const fs = require('fs');
 const path = require('path');
 const uuid4 = require('uuid4');
 
+const APP_URL = "http://localhost:8000/"
+//const APP_URL = "https://ex-machina-turbo.herokuapp.com"
+
 const pathImages = path.join(__dirname, "../temp/images");
 const pathVideos = path.join(__dirname, "../temp/videos");
 
@@ -25,7 +28,7 @@ module.exports = {
                         res.status(400).send({status: "Failed"});
                     }
     
-                    res.status(200).send({status: "Done", id, path: `${id}.png`});
+                    res.status(200).send({status: "Done", id, path: `${APP_URL}/images/${id}.png`});
                 });
             }
             catch(err){
@@ -51,7 +54,7 @@ module.exports = {
                         res.status(400).send({status: "Failed"});
                     }
     
-                    res.status(200).send({status: "Done", id, path: `${id}.mp4`});
+                    res.status(200).send({status: "Done", id, path: `${APP_URL}/videos/${id}.mp4`});
                 });
             }
             catch(err){
@@ -60,4 +63,35 @@ module.exports = {
             }
         })
     },
+
+    listFiles : async(req, res) => {
+        files = []
+        resp = fs.readdir(path.join(__dirname, '../temp/images'), (err, images) => {
+            images = images.splice(1, images.length)
+            files = files.concat(images)
+            resp = fs.readdir(path.join(__dirname, '../temp/videos'), (err, videos) => {
+                videos = videos.splice(1, videos.length)
+                files = files.concat(videos)
+                res.status(200).send({files, images: images.length, videos: videos.length})
+            });
+        });
+    },
+
+    removeFile : async(req, res) => {
+        console.log(req.query)
+        if(req.query.id == '.gitkeep'){
+            res.status(500).send("Hoje não")
+            return
+        }
+        filepath = path.join(__dirname, `../temp/${req.query.folder == 'images' ? 'images' : 'videos'}/${req.query.id.split('/')[0]}`)
+        console.log(filepath)
+        if (fs.existsSync(filepath)) {
+            fs.unlink(filepath, (err) => {
+                res.status(200).send("Apagado")
+                return
+            })
+        }else{
+            res.status(200).send("Nada")
+        }
+    }
 }
